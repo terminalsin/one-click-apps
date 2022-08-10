@@ -1,35 +1,44 @@
-  captainVersion: 4
-  services:
-      $$cap_appname:
-          image: dzikoysk/reposilite:$$cap_reposilite_version
-          environment:
-              JAVA_OPTS: -Xmx$$cap_java_memory
-          hostname: $$cap_appname.$$cap_root_domain
-          volumes:
-              - $$cap_appname-data:/app/data
-          caproverExtra:
-              containerHttpPort: 8080
-  caproverOneClickApp:
-      variables:
-          - id: $$cap_reposilite_version
+captainVersion: 4
+services:
+    $$cap_appname:
+        image: 'dzikoysk/reposilite:$$cap_reposilite_version'
+        environment:
+            JAVA_OPTS: '-Xmx$$cap_java_memory'
+        hostname: $$cap_appname.$$cap_root_domain
+        volumes:
+            - '$$cap_appname-data:/app/data'
+        caproverExtra:
+            containerHttpPort: 8080
+caproverOneClickApp:
+    variables:
+        -
+            id: $$cap_reposilite_version
             label: Reposilite Version
-            defaultValue: 'LATEST'
-            description: Check out their Docker page for the valid tags https://hub.docker.com/r/dzikoysk/reposilite
-            validRegex: /^([^\s^\/])+$/
-          - id: $$cap_java_memory
+            defaultValue: LATEST
+            description: >-
+                Check out their Docker page for the valid tags
+                https://hub.docker.com/r/dzikoysk/reposilite
+            validRegex: '/^([^\s^\/])+$/'
+        -
+            id: $$cap_java_memory
             label: Memory
-            defaultValue: '512Mb'
-            description: Select the necessary amount of ram allocated to reposilite. View https://reposilite.com/guide/manual for recommendations.
-            validRegex: /(\d+(?:\.\d+)?)\s*([kmgtpKMGTP]?[bB])/
-          
-      instructions:
-          start: >-
-              Lightweight and easy-to-use repository manager for Maven based artifacts in JVM ecosystem. 
-              This is simple, extensible and scalable self-hosted solution to replace managers like Nexus, 
-              Archiva or Artifactory, with reduced resources consumption.
-          end: >-
-              Reposilite is deployed and available at http://$$cap_appname.$$cap_root_domain.
-      displayName: Reposilite
-      isOfficial: true
-      description: Reposilite is Lightweight repository management software dedicated for the Maven artifacts 
-      documentation: Taken from https://hub.docker.com/r/dzikoysk/reposilite
+            defaultValue: 512Mb
+            description: >-
+                Select the necessary amount of ram allocated to reposilite. View
+                https://reposilite.com/guide/manual for recommendations.
+            validRegex: '/(\d+(?:\.\d+)?)\s*([kmgtpKMGTP]?[bB])/'
+    instructions:
+        start: >-
+            Lightweight and easy-to-use repository manager for Maven based
+            artifacts in JVM ecosystem.  This is simple, extensible and scalable
+            self-hosted solution to replace managers like Nexus,  Archiva or
+            Artifactory, with reduced resources consumption.
+        end: >-
+            Reposilite is deployed and available at
+            http://$$cap_appname.$$cap_root_domain.
+    displayName: Reposilite
+    isOfficial: true
+    description: >-
+        Reposilite is Lightweight repository management software dedicated for
+        the Maven artifacts
+    documentation: 'Taken from https://hub.docker.com/r/dzikoysk/reposilite'
