@@ -7,8 +7,6 @@
           hostname: $$cap_appname.$$cap_root_domain
           volumes:
               - $$cap_appname-data:/app/data
-              - $$cap_path_to_movies:/movies
-              - $$cap_path_to_tv:/tv
           caproverExtra:
               containerHttpPort: 8080
   caproverOneClickApp:
